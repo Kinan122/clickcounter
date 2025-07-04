@@ -1,1 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Link-Klickzähler</title>
+</head>
+<body>
+  <h1>Mein Link</h1>
+  <a href="https://dein-link-hier.de" onclick="zähler()">Hier klicken!</a>
+  <p>Link wurde <span id="count">0</span> mal geklickt.</p>
+
+  <script>
+    const storageKey = "clicks";
+    const countDisplay = document.getElementById("count");
+
+    function zähler() {
+      let clicks = parseInt(localStorage.getItem(storageKey) || "0");
+      clicks += 1;
+      localStorage.setItem(storageKey, clicks);
+      countDisplay.textContent = clicks;
+    }
+
+    // Beim Laden aktuelle Anzahl anzeigen
+    document.addEventListener("DOMContentLoaded", () => {
+      countDisplay.textContent = localStorage.getItem(storageKey) || "0";
+    });
+  </script>
+</body>
+</html>
 
